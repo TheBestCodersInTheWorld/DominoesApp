@@ -87,6 +87,9 @@ class Order(object):
         }
 
         r = requests.post(url=url, headers=headers, json={'Order': self.data})
+        print(r)
+        print("\n")
+        print(r.status_code)
         r.raise_for_status()
         json_data = r.json()
 

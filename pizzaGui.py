@@ -1,17 +1,22 @@
 import tkinter as tk
+# GUI: Graphical User Interface -> a screen with buttons, text fields, etc., to allow users to interact with the application
 from tkinter import font as tkfont # python 3
 from tkinter import ttk
 from tkinter import Scrollbar
 from PIL import ImageTk, Image
-from pizzapy import Customer, StoreLocator, Order, ConsoleInput
-from pizzapy.store import Store, StoreLocator
-from pizzapy.address import Address
-from tkinter import Tk, Label, Button, StringVar
-from pizzapy.payment import CreditCard
+# from pizzapy import Customer, StoreLocator, Order, ConsoleInput
+# from pizzapy.store import Store, StoreLocator
+# from pizzapy.address import Address
+# from tkinter import Tk, Label, Button, StringVar
+# from pizzapy.payment import CreditCard
 
 from client import Client
+from screens.infopage import InfoPage
+from screens.storelocatorpage import StoreLocatorPage
 from screens.startpage import StartPage
-
+from screens.orderpage import OrderPage
+from screens.orderreviewpage import OrderReviewPage
+from screens.finalorderpage import FinalOrderPage
 
 def handle_focus_in(entry):
     entry.delete(0, tk.END)
@@ -24,12 +29,9 @@ def handle_focus_out(entry):
 def handle_enter(entry):
     handle_focus_out(entry)
 
-client = Client()
-
-
 
 # Class representing our overall page
-class Overall(tk.Tk):
+class Controller(tk.Tk):
 
     # Methot that initializes all the stuff we want to see in our welcome page
     def __init__(self, *args, **kwargs):
@@ -42,8 +44,10 @@ class Overall(tk.Tk):
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
         self.total_price = 0.0
 
-        # ADD ALL OTHER PAGES HERE IN THIS TUPLE
-        for F in [StartPage]:
+        self.client = Client()
+
+        # ADD ALL OTHER PAGES HERE IN THIS List
+        for F in [StartPage, InfoPage, StoreLocatorPage, OrderPage, OrderReviewPage, FinalOrderPage]:
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -58,8 +62,10 @@ class Overall(tk.Tk):
         global client
         '''Show a frame for the given page name'''
         frame = self.frames[page_name]
+        if type(frame) == OrderPage:
+            frame.get_menu()
         frame.tkraise()
 
-root = Overall()
-root.geometry("900x900")
+root = Controller()
+root.geometry("900x1200")
 root.mainloop()

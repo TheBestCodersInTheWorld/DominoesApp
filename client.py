@@ -12,4 +12,10 @@ class Client():
         self.card = ""
         self.items = []
         self.total_price = 0
+        self.order = None
+        self.chosen_rst = None
+        self.first_name = ""
+        self.last_name = ""
+
+
 
