@@ -9,6 +9,7 @@ class Client():
         self.address = Address("", "", "", "", "", "us")
         self.phone = ""
         self.place = ""
+        self.method = "Delivery"
         self.card = ""
         self.items = []
         self.total_price = 0

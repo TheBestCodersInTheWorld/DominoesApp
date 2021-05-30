@@ -38,12 +38,12 @@ class StoreLocatorPage(tk.Frame):
     def search_rst(self, stores_list):
         # stores_list = [store1, store2, STORE3, STORE1 3R2 ]
         if len(stores_list) == 2:
-            store2btn = ttk.Button(self, text=str(stores_list[0]), command = self.confirm_rst(stores_list[0]))
+            store2btn = ttk.Button(self, text=str(stores_list[0]), command = lambda :self.confirm_rst(stores_list[0]))
             store2btn.pack()
         else:
-            store2btn = ttk.Button(self, text=str(stores_list[1]), command = self.confirm_rst(stores_list[1]))
+            store2btn = ttk.Button(self, text=str(stores_list[1]), command = lambda :self.confirm_rst(stores_list[1]))
             store2btn.pack()
-            store3btn = ttk.Button(self, text=str(stores_list[2]), command = self.confirm_rst(stores_list[2]))
+            store3btn = ttk.Button(self, text=str(stores_list[2]), command = lambda : self.confirm_rst(stores_list[2]))
             store3btn.pack()
 
     def confirm_rst(self, store):

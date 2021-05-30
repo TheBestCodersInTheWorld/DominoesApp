@@ -78,10 +78,17 @@ class FinalOrderPage(tk.Frame):
         # loop through our cart and add items to the order
         for item in self.controller.client.cart:
             my_order.add_item(item.code)
+        print("PRODUCTS HERE :\n",my_order.data["Products"])
+
         print("\n\n TRYING ORDER NWO")
         try:
+            print("PAYWITH DATA \n", my_order.pay_with(self.card), "\n ###############\n")
+            print("\n v status: ",my_order.validate())
             # my_order.place(self.card)
-            pprint(my_order.place(self.card))
+            # pprint(my_order.place(self.card))
+            # self.controller.client.chosen_rst.place_order(client.order, self.card)
+            
+
             print("Successful placement!")
 
         except Exception as error:

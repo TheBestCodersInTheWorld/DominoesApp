@@ -100,8 +100,7 @@ class InfoPage(tk.Frame):
 
     def save_address(self, street, city, state, zip):
         print("saving address")
-        self.controller.client.address = Address(street, city, state, zip)
-        print(self.controller.client.address.urls)
+        self.controller.client.address = Address(street, city, state, zip, "TX", "us")
         self.get_number()
 
     def get_number(self):
